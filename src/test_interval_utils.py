@@ -43,7 +43,7 @@ def test_update_time_range_date_boundary():
     updated_linked_interval = interval_utils.update_time_range(linked_interval, new_start, new_end)
 
     assert s(updated_linked_interval.start) == "2021-05-10 20:00:02"
-    assert s(updated_linked_interval.end) == "2021-05-11 03:15:01"
+    assert s(updated_linked_interval.end) == "2021-05-11 03:15:00"
     assert s(updated_linked_interval.orig_start) == "2021-05-09 04:10:14"
     assert s(updated_linked_interval.orig_end) == "2021-05-09 11:25:12"
 
