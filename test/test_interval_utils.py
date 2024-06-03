@@ -1,6 +1,6 @@
 from datetime import datetime
-from intervals import Interval, LinkedInterval
-import interval_utils
+from src.intervals import Interval, LinkedInterval
+import src.interval_utils as interval_utils
 import pytest
 
 
