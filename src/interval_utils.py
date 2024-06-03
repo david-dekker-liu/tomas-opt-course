@@ -1,4 +1,4 @@
-from intervals import LinkedInterval, Interval
+from src.intervals import LinkedInterval, Interval
 
 
 # Restrict a linked interval to some new time window
