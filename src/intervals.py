@@ -5,6 +5,11 @@ class LinkedInterval:
         self.orig_start = orig_start
         self.orig_end = orig_end
 
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.__dict__ == other.__dict__
+        return False
+
 
 class Interval:
     def __init__(self, start, end):
