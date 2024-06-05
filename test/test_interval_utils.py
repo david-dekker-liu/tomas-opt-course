@@ -8,27 +8,23 @@ def d(x):
     return datetime.strptime(x, "%Y-%m-%d %H:%M:%S")
 
 
-def s(x):
-    return x.strftime("%Y-%m-%d %H:%M:%S")
-
-
 def test_update_time_range_basic():
     linked_interval = LinkedInterval(
-        start=d("2021-05-11 13:18:00"),
-        end=d("2021-05-11 13:38:00"),
+        start=d("2021-05-11 13:00:00"),
+        end=d("2021-05-11 13:30:00"),
         orig_start=d("2021-05-11 12:00:00"),
-        orig_end=d("2021-05-11 12:20:00"))
+        orig_end=d("2021-05-11 12:30:00"))
 
-    new_start = d("2021-05-11 13:28:00")
-    new_end = d("2021-05-11 13:33:00")
+    new_start = d("2021-05-11 13:10:00")
+    new_end = d("2021-05-11 13:20:00")
 
     updated_linked_interval = interval_utils.update_time_range(linked_interval, new_start, new_end)
 
     assert updated_linked_interval == LinkedInterval(
-        start=d("2021-05-11 13:28:00"),
-        end=d("2021-05-11 13:33:00"),
+        start=d("2021-05-11 13:10:00"),
+        end=d("2021-05-11 13:20:00"),
         orig_start=d("2021-05-11 12:10:00"),
-        orig_end=d("2021-05-11 12:15:00")
+        orig_end=d("2021-05-11 12:20:00")
     )
 
 
@@ -52,7 +48,7 @@ def test_update_time_range_date_boundary():
     )
 
 
-# Tests the linear interpolation of a time window when the corresponding window is shortened, with bad input
+# Test for an exception if the interval is not properly shortened
 def test_update_time_range_bad_input():
     linked_interval = LinkedInterval(
         start=d("2021-05-10 20:00:00"),
@@ -60,7 +56,7 @@ def test_update_time_range_bad_input():
         orig_start=d("2021-05-09 04:10:12"),
         orig_end=d("2021-05-09 14:10:12"))
 
-    new_start = d("2021-05-10 19:59:58")
+    new_start = d("2021-05-10 18:00:00")
     new_end = d("2021-05-11 03:15:00")
 
     with pytest.raises(Exception):
